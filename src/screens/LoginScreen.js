@@ -1,15 +1,17 @@
+import React, {useState} from 'react';
+import {View, TextInput, Button, StyleSheet} from 'react-native';
+import {login} from '../api';
+import { useNavigation } from '@react-navigation/native';
 
-
-import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
-import { login } from '../api';
-
-const LoginScreen = () => {
-  const [email, setEmail] = useState('');
+const LoginScreen = ({route}) => {
+  const {email} = route?.params;
   const [otp, setOtp] = useState('');
+  const navigation = useNavigation();
 
   const handleLogin = async () => {
     await login(email, otp);
+    alert('Login successfully');
+    navigation.navigate('Home');
   };
 
   return (
@@ -18,7 +20,7 @@ const LoginScreen = () => {
         style={styles.input}
         placeholder="Enter email"
         value={email}
-        onChangeText={setEmail}
+        editable={false}
       />
       <TextInput
         style={styles.input}
