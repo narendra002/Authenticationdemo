@@ -17,7 +17,7 @@ const OtpScreen = () => {
   const handleGenerateOtp = async () => {
     await generateOtp(email);
     alert('OTP sent to your email');
-    page === 'page'
+    page === 'Register'
       ? navigation.navigate('Register', {email})
       : navigation.navigate('Login', {email});
   };
